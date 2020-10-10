@@ -40,7 +40,9 @@ const TemplateLoader: webpack.loader.Loader = function (source, inMap) {
       ...options.compilerOptions,
       scopeId,
       bindingMetadata:
-        typeof query.bindings === 'string' ? JSON.parse(query.bindings) : {},
+        typeof query.bindings === 'string' && query.bindings !== 'undefined'
+          ? JSON.parse(query.bindings)
+          : {},
     },
     transformAssetUrls: options.transformAssetUrls || true,
   })
